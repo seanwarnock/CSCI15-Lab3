@@ -68,15 +68,22 @@ void printSpiral(ofstream &outputFile, int numArray[][20], int rows, int colums)
 {
     //Print out the array
     //todo, MUST use setw using a calculated amount.
+    //int total = rows + columns;
+    int columnwidth = 1;
+    int total = rows * colums;
 
 
-    int columwidth = 4;
+    while(total=total/10)
+    {
+        columnwidth++;
+    }
+    columnwidth++;
     for(int i = 0; i < MAXROW; i++)
     {
         for(int j = 0; j < MAXCOLUMN; j++)
         {
-            cout << setw(columwidth) << numArray[i][j] ;;
-            outputFile << setw(columwidth) << numArray[i][j] ;
+            cout << setw(columnwidth) << numArray[i][j] ;;
+            outputFile << setw(columnwidth) << numArray[i][j] ;
         }
 
         cout << endl;
