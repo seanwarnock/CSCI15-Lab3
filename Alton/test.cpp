@@ -10,18 +10,22 @@ using namespace std;
 
 void makeSpiral(int rows, int columns, int numArray[][20])
 {
+/*
+This function fills a two dimensional array with an incrementing
+integer value.
+*/
     int num = 1;
 
     int startingRow = 0;
-    int endingRow = rows-1;
+    int endingRow = rows - 1;
     int startingColumn = 0;
-    int endingColumn = columns-1;
+    int endingColumn = columns - 1;
 
     int i;
     while(num <= rows*columns)
     {
         i = startingRow;
-        while(i <= endingRow && !numArray[i][startingColumn])
+        while((i <= endingRow) && (!numArray[i][startingColumn]))
         {
             numArray[i][startingColumn] = num++;
             i++;
@@ -29,7 +33,7 @@ void makeSpiral(int rows, int columns, int numArray[][20])
         startingColumn++;
 
         i = startingColumn;
-        while(i <= endingColumn && !numArray[endingRow][i])
+        while((i <= endingColumn) && (!numArray[endingRow][i]))
         {
             numArray[endingRow][i] = num++;
             i++;
@@ -37,7 +41,7 @@ void makeSpiral(int rows, int columns, int numArray[][20])
         endingRow--;
 
         i = endingRow;
-        while(i >= startingRow && !numArray[i][endingColumn])
+        while((i >= startingRow) && (!numArray[i][endingColumn]))
         {
             numArray[i][endingColumn] = num++;
             i--;
@@ -45,7 +49,7 @@ void makeSpiral(int rows, int columns, int numArray[][20])
         endingColumn--;
 
         i = endingColumn;
-        while(i >= startingColumn && !numArray[startingRow][i])
+        while((i >= startingColumn) && (!numArray[startingRow][i]))
         {
             numArray[startingRow][i] = num++;
         }
@@ -60,13 +64,17 @@ void printSpiral(ofstream &outputFile, int numArray[][20], int rowsToPrint, int 
         for(int j = 0; j < 20; j++)
         {
             cout << setw(4) << numArray[i][j] ;;
+            outputFile << setw(4) << numArray[i][j] ;
         }
+
         cout << endl;
+        outputFile << endl;
     }
 }
 
 void fillArray(int row, int column, int arraytofill[][20])
 {
+    //This function clears out the array
     for (int i=0; i<row; i++)
     {
         for(int j=0; j<column; j++)
@@ -76,7 +84,7 @@ void fillArray(int row, int column, int arraytofill[][20])
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
     const int MAXROW = 15;
     const int MAXCOLUMN = 20;
@@ -96,4 +104,5 @@ int main()
     fillArray(MAXROW, MAXCOLUMN, numArray);
     makeSpiral(rows, columns, numArray);
     printSpiral(outputFile, numArray, MAXROW, MAXCOLUMN);
+    outputFile.close();
 }
